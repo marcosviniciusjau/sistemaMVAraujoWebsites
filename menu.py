@@ -1,6 +1,12 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from product import ProdutosPage
+
+from products import ProductsPage
+
+from clients import ClientsPage
+
+from requests import RequestsPage
+
 from home import HomePage
 
 class Menu:
@@ -16,20 +22,22 @@ class Menu:
         self.home_btn = tk.Label(self.menu_frame, text='Home', cursor='hand2')
         self.home_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
         self.home_btn.pack(pady=10)
-        self.home_btn.bind("<Button-1>", lambda event, page=HomePage: self.abrir_pagina(page))
+        self.home_btn.bind("<Button-1>", lambda event, page=HomePage: self.openPage(page))
 
         self.products_btn = tk.Label(self.menu_frame, text='Produtos', cursor='hand2')
         self.products_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
         self.products_btn.pack(pady=10)
-        self.products_btn.bind("<Button-1>", lambda event, page=ProdutosPage: self.abrir_pagina(page))
+        self.products_btn.bind("<Button-1>", lambda event, page=ProductsPage: self.openPage(page))
 
         self.clients_btn = tk.Label(self.menu_frame, text='Clientes', cursor='hand2')
         self.clients_btn.config(font=('varela round', 14),bg='#FF8100',fg="white",)
         self.clients_btn.pack(pady=10)
+        self.clients_btn.bind("<Button-1>", lambda event, page=ClientsPage: self.openPage(page))
       
-        self.pedidos_btn = tk.Label(self.menu_frame, text='Pedidos', cursor='hand2')
-        self.pedidos_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
-        self.pedidos_btn.pack(pady=10)
+        self.requests_btn = tk.Label(self.menu_frame, text='Pedidos', cursor='hand2')
+        self.requests_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
+        self.requests_btn.pack(pady=10)
+        self.requests_btn.bind("<Button-1>", lambda event, page=RequestsPage: self.openPage(page))
       
         
         self.image = Image.open("logo.PNG")
@@ -49,7 +57,7 @@ class Menu:
         self.janela.mainloop()
 
 
-    def abrir_pagina(self, page_class):
+    def openPage(self, page_class):
         page_name = page_class.__name__
         if page_name not in self.frames:
             self.frames[page_name] = page_class(self.janela).frame
@@ -59,8 +67,5 @@ class Menu:
                 frame.grid(row=0, column=1, sticky='nsew')
             else:
                 frame.grid_forget()
-
-    def ir_para_pagina_principal(self, event):
-        print("Voltando para a Página Principal")
 
 menu = Menu()
