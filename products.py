@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+from tkinter import ttk
 import dotenv
 import pymysql
 import requests
@@ -33,13 +34,21 @@ class ProductsPage:
         btnExcluir= tk.Button(self.frame,text='Excluir')
         btnLimpar= tk.Button(self.frame,text='Cadastrar')
        
-        lblId.grid(row=1, column=0, sticky=tk.E)
+        lblId.grid(row=1, column=0, sticky=tk.E,padx=10)
         lblNome.grid(row=1, column=1, sticky=tk.E)
         lblPreco.grid(row=1, column=2, sticky=tk.E)
 
         self.txtId.grid(row=2, column=0)
         self.txtNome.grid(row=2, column=1)
         self.txtPreco.grid(row=2, column=2)
+
+        columns = ("ID", "Nome", "Preço")
+        self.tree = ttk.Treeview(self.frame, columns=columns, show="headings")
+        for col in columns:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, width=100)  
+
+        self.tree.grid(row=5, column=0, columnspan=8, pady=10)
 
         btnCadastrar = tk.Button(self.frame, text='Cadastrar')
         btnAtualizar = tk.Button(self.frame, text='Atualizar')
