@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 import dotenv
 import pymysql

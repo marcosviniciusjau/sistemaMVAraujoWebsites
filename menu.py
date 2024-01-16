@@ -1,32 +1,37 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from product import ProdutosPage
+from home import HomePage
 
-class System:
+class Menu:
     def __init__(self):
         
         self.janela = tk.Tk()
         self.janela.title("MV Araújo Websites Sistema") 
-        self.janela.geometry('4440x1020')
+        self.janela.geometry('1320x1020')
 
-        self.menu_frame = tk.Frame(self.janela, width=200, height=400, bg='#FF8100')
+        self.menu_frame = tk.Frame(self.janela, width=400, height=400, bg='#FF8100')
         self.menu_frame.grid(row=0, column=0, sticky='ns')
 
-        self.novo_btn = tk.Label(self.menu_frame, text='Produtos', cursor='hand2')
-        self.novo_btn.pack(pady=10)
-        self.novo_btn.bind("<Button-1>", lambda event, page=ProdutosPage: self.abrir_pagina(page))
+        self.home_btn = tk.Label(self.menu_frame, text='Home', cursor='hand2')
+        self.home_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
+        self.home_btn.pack(pady=10)
+        self.home_btn.bind("<Button-1>", lambda event, page=HomePage: self.abrir_pagina(page))
 
-        self.abrir_btn = tk.Label(self.menu_frame, text='Clientes', cursor='hand2')
-        self.abrir_btn.pack(pady=10)
+        self.products_btn = tk.Label(self.menu_frame, text='Produtos', cursor='hand2')
+        self.products_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
+        self.products_btn.pack(pady=10)
+        self.products_btn.bind("<Button-1>", lambda event, page=ProdutosPage: self.abrir_pagina(page))
+
+        self.clients_btn = tk.Label(self.menu_frame, text='Clientes', cursor='hand2')
+        self.clients_btn.config(font=('varela round', 14),bg='#FF8100',fg="white",)
+        self.clients_btn.pack(pady=10)
       
-
-        self.salvar_btn = tk.Label(self.menu_frame, text='Pedidos', cursor='hand2')
-        self.salvar_btn.pack(pady=10)
-       
-        self.principal_btn = tk.Label(self.menu_frame, text='Home', cursor='hand2', fg='blue')
-        self.principal_btn.pack(pady=10)
-        self.principal_btn.bind("<Button-1>", self.ir_para_pagina_principal)
-
+        self.pedidos_btn = tk.Label(self.menu_frame, text='Pedidos', cursor='hand2')
+        self.pedidos_btn.config(font=('varela round', 14),bg='#FF8100',fg="white")
+        self.pedidos_btn.pack(pady=10)
+      
+        
         self.image = Image.open("logo.PNG")
         self.image_tk = ImageTk.PhotoImage(self.image)
 
@@ -58,4 +63,4 @@ class System:
     def ir_para_pagina_principal(self, event):
         print("Voltando para a Página Principal")
 
-sistema = System()
+menu = Menu()
