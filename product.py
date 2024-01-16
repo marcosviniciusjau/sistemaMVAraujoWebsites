@@ -1,5 +1,6 @@
 import tkinter as tk
 import dotenv
+import pymysql
 import requests
 from io import BytesIO
 from PIL import Image, ImageFont, ImageDraw
